@@ -1,0 +1,49 @@
+blindspot_task:
+  description: >
+    The user is deciding: {decision}
+    Their options are: {options}
+    The factors they are weighing (with importance 0-5): {factors}
+    The engine already ranked the options; the leading option is: {leading_option} (this is fixed).
+    List 3 to 5 important considerations the user did NOT include in their factors.
+    Do not re-rank, do not pick a winner.
+  expected_output: >
+    A short bullet list of 3 to 5 missing considerations, each one sentence.
+  agent: blindspot_agent
+
+explainer_task:
+  description: >
+    For the leading option {leading_option}, explain in plain language what the user gains
+    and what they give up, using ONLY their factors: {factors}. Do not invent new facts.
+  expected_output: >
+    Two short lists: "Gains" (2-3 bullets) and "Gives up" (2-3 bullets), plain language.
+  agent: explainer_agent
+
+premortem_task:
+  description: >
+    Imagine it is one year later and choosing {leading_option} turned out badly.
+    List the 3 most likely reasons it failed, specific to this decision: {decision}.
+  expected_output: >
+    A list of 3 realistic failure modes, each one sentence.
+  agent: premortem_agent
+
+judge_task:
+  description: >
+    Act as a tough hackathon judge. Ask the 4 hardest questions about this decision-coach
+    project, focused on why it needs AI and where it is weakest. For the team's pitch prep only.
+  expected_output: >
+    A numbered list of 4 tough questions.
+  agent: judge_agent
+
+assemble_task:
+  description: >
+    Combine the blind spots, the tradeoff explanation (gains and gives up), and the premortem
+    into a single JSON object. Do NOT include a recommended option or any winner.
+  expected_output: >
+    Strictly valid JSON with this shape, no text outside it:
+    {"blind_spots": ["..."], "tradeoffs": {"gains": ["..."], "gives_up": ["..."]}, "premortem": ["..."]}
+  agent: assembler_agent
+  context:
+    - blindspot_task
+    - explainer_task
+    - premortem_task
+  output_file: decision_review.json
