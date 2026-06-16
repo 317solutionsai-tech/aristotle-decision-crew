@@ -1,0 +1,19 @@
+[project]
+name = "decision_crew"
+version = "0.1.0"
+description = "Aristotle decision crew: the generative layer. Agents add language and surface blind spots. They never decide; the engine owns the score."
+requires-python = ">=3.10,<3.13"
+dependencies = ["crewai[tools]>=0.70.0"]
+
+[project.scripts]
+decision-crew = "decision_crew.main:run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/decision_crew"]
