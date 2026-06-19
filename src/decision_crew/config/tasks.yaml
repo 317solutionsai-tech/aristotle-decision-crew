@@ -39,8 +39,10 @@ assemble_task:
     Combine the blind spots, the tradeoff explanation (gains and gives up), and the premortem
     into a single JSON object. Do NOT include a recommended option or any winner.
   expected_output: >
-    Strictly valid JSON with this shape, no text outside it:
-    {{"blind_spots": ["..."], "tradeoffs": {{"gains": ["..."], "gives_up": ["..."]}}, "premortem": ["..."]}}
+    Strictly valid JSON and nothing else, no text before or after it. It must contain exactly
+    three top-level keys. First, blind_spots: a list of short strings. Second, tradeoffs: an
+    object holding two lists, one named gains and one named gives_up. Third, premortem: a list
+    of short strings. Do not include any recommended option or any winner.
   agent: assembler_agent
   context:
     - blindspot_task
