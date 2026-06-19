@@ -40,7 +40,7 @@ assemble_task:
     into a single JSON object. Do NOT include a recommended option or any winner.
   expected_output: >
     Strictly valid JSON with this shape, no text outside it:
-    {"blind_spots": ["..."], "tradeoffs": {"gains": ["..."], "gives_up": ["..."]}, "premortem": ["..."]}
+    {{"blind_spots": ["..."], "tradeoffs": {{"gains": ["..."], "gives_up": ["..."]}}, "premortem": ["..."]}}
   agent: assembler_agent
   context:
     - blindspot_task
