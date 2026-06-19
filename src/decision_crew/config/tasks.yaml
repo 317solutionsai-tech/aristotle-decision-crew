@@ -9,7 +9,6 @@ blindspot_task:
   expected_output: >
     A short bullet list of 3 to 5 missing considerations, each one sentence.
   agent: blindspot_agent
-  async_execution: true
 
 explainer_task:
   description: >
@@ -18,7 +17,6 @@ explainer_task:
   expected_output: >
     Two short lists: "Gains" (2-3 bullets) and "Gives up" (2-3 bullets), plain language.
   agent: explainer_agent
-  async_execution: true
 
 premortem_task:
   description: >
@@ -27,7 +25,6 @@ premortem_task:
   expected_output: >
     A list of 3 realistic failure modes, each one sentence.
   agent: premortem_agent
-  async_execution: true
 
 judge_task:
   description: >
